@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration History</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Registered Events</h2>
+
+    <table>
+        <tr>
+            <th>Event Title</th>
+            <th>Location</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="registration : ${registrations}">
+            <td th:text="${registration.event.title}"></td>
+            <td th:text="${registration.event.location}"></td>
+            <td th:text="${registration.event.date}"></td>
+        </tr>
+    </table>
+
+    <a th:href="@{/events}">Back to Events</a>
+</body>
+</html>

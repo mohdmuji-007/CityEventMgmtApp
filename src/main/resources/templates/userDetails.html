@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>User Profile</h2>
+
+    <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Role:</strong> <span th:text="${user.role}"></span></p>
+
+    <h3>Registered Events</h3>
+    <ul>
+        <li th:each="registration : ${user.registrations}" th:text="${registration.event.title} + ' on ' + ${registration.event.date}"></li>
+    </ul>
+
+    <a th:href="@{/events}">Back to Events</a>
+</body>
+</html>

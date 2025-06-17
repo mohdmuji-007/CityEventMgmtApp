@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Events</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h2>Upcoming Events</h2>
+
+	<!-- Filter by Category -->
+	<form th:action="@{/events/category}" method="get">
+		<label>Select Category:</label> <select name="category">
+			<option th:each="category : ${categories}" th:value="${category}"
+				th:text="${category}"></option>
+		</select>
+		<button type="submit">Filter</button>
+	</form>
+
+
+
+	<!-- Filter by Date -->
+	<form th:action="@{/events/date}" method="get">
+		<label>Select Date:</label> <input type="date" name="date">
+		<button type="submit">Search</button>
+	</form>
+
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Location</th>
+			<th>Date</th>
+			<th>Seats Available</th>
+			<th>Actions</th>
+		</tr>
+		<tr th:each="event : ${events}">
+			<td th:text="${event.title}"></td>
+			<td th:text="${event.location}"></td>
+			<td th:text="${event.date}"></td>
+			<td th:text="${event.availableSeats}"></td>
+			<td><a th:href="@{/events/details/{id}(id=${event.id})}">View</a>
+				| <a th:href="@{/register/event}"
+				th:if="${event.availableSeats > 0}">Register</a></td>
+		</tr>
+	</table>
+</body>
+</html>

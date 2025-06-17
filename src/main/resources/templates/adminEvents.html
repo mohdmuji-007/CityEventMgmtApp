@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Manage Events</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Admin Event Management</h2>
+
+    <a th:href="@{/admin/events/add}">Add New Event</a>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Seats Available</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="event : ${events}">
+            <td th:text="${event.title}"></td>
+            <td th:text="${event.location}"></td>
+            <td th:text="${event.date}"></td>
+            <td th:text="${event.category}"></td>
+            <td th:text="${event.availableSeats}"></td>
+            <td>
+                <a th:href="@{/admin/events/edit/{id}(id=${event.id})}">Edit</a> |
+                <a th:href="@{/admin/events/delete/{id}(id=${event.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <a th:href="@{/events}">Back to Events</a>
+</body>
+</html>
